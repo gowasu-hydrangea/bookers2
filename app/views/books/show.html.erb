@@ -1,0 +1,10 @@
+<h1>Books#show_詳細画面</h1>
+<p>Find me in app/views/books/show.html.erb</p>
+
+  <!--アプリケーションを完成させよう2＞13章-->
+  <% if @book.user == current_user %>
+    <%= link_to "destroy", book_path(@book), method: :delete %>
+  <% end %>
+  
+  <p><%= link_to "book編集", edit_book_path(@book.id) %></p>
+  <%= link_to "Book削除", destroy_book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

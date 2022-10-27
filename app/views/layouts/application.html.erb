@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!--Bootstrapを使うために必要な記述を追加する-->
+    <!--linkをpackに変更-->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   <header>
+     
+    <!--ログイン済みの時-->
+    <% if user_signed_in? %>
+      <!--Bookersリンクを押すと、app/views/homes/top.htmi.erbファイルにパスしてほしい-->
+       <a><%= link_to "Bookers", root_path %></a>
+    
+      <!--Homeリンクを押すと、app/views/users/show.html.erbファイルにパスしてほしい-->
+      <li><%= link_to "Home", users_path %></li>
+      <!--Usersリンクを押すと、app/views/books/index.html.erbファイルにパスしてほしい-->
+      <li><%= link_to "Users", books_path %></li>
+      <!--Booksリンクを押すと、画面右側にBooksというタイトルの
+      投稿データ一覧画面としてapp/views/books/index.html.erbファイル内を提示してほしい-->
+      <li><%= link_to "Books", books_path %></li>
+      
+      <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+      
+      <!--ログアウト時-->
+    <% else %>
+    <!--Bookersリンクを押すと、app/views/homes/top.htmi.erbファイルにパスしてほしい-->
+    <a><%= link_to "Bookers", root_path %></a>
+    
+      <!--Homeリンクを押すと、app/views/users/top.html.erbファイルにパスしてほしい-->
+      <li>"Home"</li>
+      <!--Aboutリンクを押すと、app/views/homes/about.html.erbファイルにパスしてほしい-->
+      <li>"About"</li>
+      <!--Sign Upリンクを押すと、app/views/devise/registrations/new.html.erbファイルにパスしてほしい-->
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+       <!--Log inリンクを押すと、app/views/devise/session/new.html.erbファイルにパスしてほしい-->
+      <li><%= link_to "Log in", new_user_session_path %></li>
+    <% end %>
+
+   </header>
+    <%= yield %>
+    
+    
+<!--フラッシュメッセージの実装＞新規投稿が成功したとき-->
+<div class="text-success">
+  <%= flash[:notice] %>
+</div>
+<div class="text-danger">
+  <%= flash[:alret] %>
+</div>
+    
+   <footer>
+     <div class="container mt-5">
+      <div class="row">
+       <div class="mx-auto">
+        <p>CopyRight Infratop.inc</p>
+       </div>
+      </div>
+      </div>
+   </footer>
+  </body>
+
+</html>

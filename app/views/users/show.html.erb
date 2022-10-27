@@ -1,0 +1,19 @@
+<!--Bookers2のユーザーのプロフィール情報画面(表示のみ)-->
+<!--/users/なんかのid　にアクセスされたとき、このファイルが表示されるはず-->
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<!--この下におそらく投稿データの新規投稿画面として-->
+<!--app/views/books/new.html.erbファイルが添付されると思う-->
+
+<!--さらにサイト画面上右側に、投稿データの一覧画面として-->
+<!--app/views/books/index.html.erbファイルが添付されると思う-->
+
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  
+  <% if @user == current_user %>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
+  <% end %>
+  
+</div>

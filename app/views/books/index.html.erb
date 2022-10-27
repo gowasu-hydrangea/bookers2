@@ -1,0 +1,40 @@
+
+<!--bookのindexページの左側の作成(User info)-->
+<!--(app/views/books/index.html.erb)-->
+
+<main>
+ <!--<p>サクセスメッセージorエラーメッセージの表示</p>-->
+ <!--バリテーションの実装＞新規投稿が失敗したとき-->
+ <% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <!--<div class="container px-5 px-sm-0">-->
+   <div class="row">
+    <div class="col-md-3">
+          
+          <!--部分テンプレート-->
+          <%= render 'list', books: @books %>
+          
+    </div>
+    
+    <div class="col-md-8 offset-md-1">
+     <h2>Books</h2>
+      <% @books.each do |book| %>
+      
+      <p>Title</p>
+      <span><%= book.title %></span>
+
+      <p>Opinion</p>
+      <span><%= book.body %></span>
+
+      <% end %>
+    </div>
+   </div>
+  <!--</div>-->
+</main>
