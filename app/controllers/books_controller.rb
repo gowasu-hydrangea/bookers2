@@ -11,6 +11,7 @@ class BooksController < ApplicationController
   def index
     # bookのindexページの右側の作成(Books)
     @books = Book.all
+    @book = Book.new
   end
 
   def show
@@ -26,14 +27,16 @@ class BooksController < ApplicationController
   
   def create
    @book = Book.new(book_params)
-  # @book.user_id = current_user.id
+   @book.user_id = current_user.id
    if @book.save
     # フラッシュメッセージの実装＞新規投稿が成功したとき
     flash[:notice] = "successfully"
-    redirect_to book_path
+    redirect_to book_path(@book.id)
    else
+     @books = Book.all
      flash[:alret] = "error"
-     render :new
+     render :index
+     
    end
   end
   

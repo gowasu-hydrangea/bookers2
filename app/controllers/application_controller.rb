@@ -9,19 +9,19 @@ class ApplicationController < ActionController::Base
   # sign upページの編集
   # アプリケーションを完成させよう2＞7章
   def after_sign_in_path_for(resource)
-    about_path
+    user_path(current_user.id)
   end
 
   # sign upページの編集
   # アプリケーションを完成させよう2＞7章
   def after_sign_out_path_for(resource)
-    about_path
+    destroy_user_session_path
   end
   
   protected
-
+# 認証　email
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
   end
   
 end

@@ -3,7 +3,7 @@
 <!--/users/何かしらのid にアクセスされたとき、このファイルが表示されるのか？-->
 <h2>User info(app/views/books/_list.html.erb)</h2>
           <!--プロフィール画像-->
-          <%= image_tag book.user.get_profile_image(100,100) %>
+          <%= image_tag @user.get_profile_image %>
           <table class="table table-striped">
             <tbody>
               <!--name-->
@@ -27,5 +27,5 @@
           <h4>感想</h4>
           <%= f.text_area :body %>
 
-          <%= link_to 'Create Book', create_bookt_path, class: "btn btn-secondary" %>
+          <%= f.submit 'Create Book',  class: "btn btn-secondary" %>
           <% end %>

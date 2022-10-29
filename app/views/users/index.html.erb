@@ -6,6 +6,8 @@
 
 <%= @users.each do |user| %>
 
+  <span><%= image_tag @user.get_profile_image %></span>
+
   <p>name</p>
   <span><%= user.name %></span>
   
